@@ -1,0 +1,11 @@
+Package: FALL234753hami0096
+Type: Package
+Title: MATH4753 lab functions
+Version: 0.1.0
+Author: Joshua Hamilton
+Maintainer: Joshua Hamilton <dachs218@yahoo.com>
+Description: Functions from Fall semester MATH 4753.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.3
