@@ -1,0 +1,104 @@
+---
+title: "What the package does"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{What the package does}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(FALL234753hami0096)
+```
+
+# Introduction
+
+This package contains multiple functions, algorithms, and data from the Fall 2023 semester of MATH 4753. Below are examples of each function included in this package. 
+
+## mybin()
+
+The mybin() function repeatedly simulates a binomial. A binomial experiment with n number of trials and p probability of success is carried out iter times, and a histogram is created displaying the test statistic ybar, the average number of successes in each experiment. Ybar in this case estimates the population mean, np. A list of relative frequencies for each ybar value is also outputted. 
+
+```{r}
+mybin(iter=200,n=10, p=0.7)
+```
+
+## myboot2()
+
+The myboot2() function estimates a population parameter by repeatedly resampling from a sample. The parameter to estimate is specified in the function call. After resampling repeatedly, separate test statistics are calculated from each resample, and a histogram is made of those test statistics. A point estimate and a confidence interval are pasted onto the graph. 
+
+```{r}
+myboot2(x=rnorm(25,mean=25,sd=10),fun="mean",xlab="mean")
+```
+
+## myci()
+
+The myci() algorithm returns a 95% confidence interval for the mean of the given sample, as well as an invisible list of key values used to calculate it. 
+
+```{r}
+myci(rnorm(2,mean=5,sd=4))
+```
+
+## mycltu()
+
+The mycltu() function showcases the application of the central limit theorem on a uniform distribution. By taking iter samples of size n from a given uniform distribution and calculating the sample means, a histogram of the sample means is created. As n increases, the distribution becomes more and more normal. A horizontal line on the graph represents the uniform density, the blue line represents the histogram's trend, and the red line represents the normal approximation trend. 
+
+```{r}
+mycltu(n=20,iter=100000,a=0,b=5)
+```
+
+## myfun()
+
+The myfun() algorithm simply squares the input vector and adds 10 to it. 
+
+```{r}
+myfun(1:10)
+```
+
+## mymlnorm())
+
+The mymlnorm() function estimates mu and sigma from a normal distribution using Maximum Liklihood Estimators. This is achieved by calculating length values of the L function for both mu and sigma, taking the log of L, and zeroing the two log L function's values together. A contour graph displaying this optimization is shown. A list of key values used in calculations is also outputted. 
+
+```{r}
+mymlnorm(x=c(10,12,13,15,12,11,10),mu=seq(10,15,length=1000),sig=seq(0.1,4,length=1000))
+```
+
+## myncurve()
+
+The myncurve() function creates a graph of a normal curve with the given mean and standard deviation, shaded with the lower tail probability of the given value. The probability is outputted. 
+
+```{r}
+myncurve(10,4,9)
+```
+
+## ntickets()
+
+The ntickets() algorithm determines the optimal number of tickets to sell for a flight given the number of seats on the flight, the probability of overbooking, and the probability that a certain person will show up to their flight. Two different graphs are given for this estimation: one using a discrete binomial distribution, and one using the continuous normal approximation to the binomial distribution. A list of key values is outputted: the two estimates and the three input values. 
+
+```{r}
+ntickets(N=400,gamma=0.02,p=0.95)
+```
+
+## fire data
+
+The fire dataset contains information quantifying the amount of damage a home receives from fire vs how far away from a fire station the home is. It has two variables: Distance and Damage, both with 15 entries. This is a paired sample. 
+
+```{r}
+head(fire)
+```
+
+
+## scatterhist()
+
+The scatterhist() function creates a sophisticated plot containing a scatterplot in the middle with histograms on the sides for each axis. This plot displays the variability of each axis as well as the general trend of the data. 
+
+```{r}
+with(fire, scatterhist(DISTANCE,DAMAGE, xlab="DISTANCE", ylab="DAMAGE"))
+```
